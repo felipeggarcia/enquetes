@@ -43,8 +43,6 @@ void main() {
     final params = AuthenticationParams(
         email: faker.internet.email(), secret: faker.internet.password());
     final future = sut.auth(params);
-
-    await sut.auth(params);
     expect(future, throwsA(DomainError.unexpected));
   });
 }
