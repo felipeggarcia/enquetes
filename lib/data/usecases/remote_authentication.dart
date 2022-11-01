@@ -1,3 +1,5 @@
+import 'package:enquetes/domain/helpers/helpers.dart';
+import 'package:flutter/cupertino.dart';
 
 import '../../domain/usecases/usecases.dart';
 import '../http/http.dart';
@@ -5,18 +7,22 @@ import '../http/http.dart';
 class RemoteAuthentication {
   final HttpClient httpClient;
   final String url;
-  Future<void>? auth(AuthenticationParams params) async {
+  Future<void> auth(AuthenticationParams params) async {
     final body = RemoteAuthenticationParams.fromDomain(params).toJson();
-    httpClient.request(
-      url: url,
-      method: 'post',
-      body: body,
-    );
+    try {
+      await httpClient.request(
+        url: url,
+        method: 'post',
+        body: body,
+      );
+    } on HttpError {
+      throw DomainError.unexpected;
+    }
   }
 
   RemoteAuthentication({
-    required this.httpClient,
-    required this.url,
+    @required this.httpClient,
+    @required this.url,
   });
 }
 
@@ -25,8 +31,8 @@ class RemoteAuthenticationParams {
   final String password;
 
   RemoteAuthenticationParams({
-    required this.email,
-    required this.password,
+    @required this.email,
+    @required this.password,
   });
 
   factory RemoteAuthenticationParams.fromDomain(AuthenticationParams params) =>

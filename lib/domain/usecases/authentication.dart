@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+
 import '../entities/entities.dart';
 
 abstract class Authentication {
@@ -9,7 +11,7 @@ class AuthenticationParams {
   final String secret;
 
   AuthenticationParams({
-    required this.email,
-    required this.secret,
+    @required this.email,
+    @required this.secret,
   });
 }
