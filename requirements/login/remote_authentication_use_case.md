@@ -19,6 +19,6 @@
 1. Sistema retonea uma mensagem de erro inesperado
 
 >## Exceção - Credenciais inválidas
-1. Sistema retonea uma mensagem de erro informando qua as credenciais estão erradas
+1. ✅ Sistema retonea uma mensagem de erro informando qua as credenciais estão erradas
 
 
