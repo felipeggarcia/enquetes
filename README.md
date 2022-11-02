@@ -1,17 +1,91 @@
 # 4Dev Flutter - Enquetes para Programadores
 
-A new Flutter project.
+## [**Link para a documentação da API**](http://fordevs.herokuapp.com/api-docs)
 
-## Getting Started
+> ## Princípios
 
-This project is a starting point for a Flutter application.
+* Single Responsibility Principle (SRP)
+* Open Closed Principle (OCP)
+* Liskov Substitution Principle (LSP)
+* Interface Segregation Principle (ISP)
+* Dependency Inversion Principle (DIP)
+* Separation of Concerns (SOC)
+* Don't Repeat Yourself (DRY)
+* You Aren't Gonna Need It (YAGNI)
+* Keep It Simple, Silly (KISS)
+* Command Query Responsibility Segregation (CQRS)
+* Composition Over Inheritance
+* Small Commits
 
-A few resources to get you started if this is your first Flutter project:
+> ## Design Patterns
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+* Factory
+* Adapter
+* Composite
+* Decorator
+* Dependency Injection
+* Abstract Server
+* Composition Root
+* Builder
+* Singleton
+* Observer
+* Strategy
+* AAA (Arrange, Act and Assert)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-# enquetes
+> ## Metodologias e Designs
+
+* TDD
+* BDD
+* Clean Architecture
+* Reactive Programming
+* GitFlow
+* Modular Design
+* Dependency Diagrams
+* Use Cases
+
+> ## Bibliotecas e Ferramentas
+
+* Flutter
+* Http
+* Provider
+* GetX
+* Equatable
+* Mockito
+* Faker
+* Meta
+* Git
+* Flutter Secure Storage
+* LocalStorage
+* i18n
+* Image Test Utils
+
+> ## Features do Dart/Flutter
+* Classes
+* Abstract Classes
+* Functions
+* Constants
+* Mixins
+* Extensions
+* Enums
+* Exceptions
+* Futures
+* Streams
+* Constructors
+* Async/Await
+* Stateless Widgets
+* Stateful Widgets
+* Material Theme
+* Assets
+* App Icon
+
+> ## Features de Testes
+
+* Testes Unitários
+* Testes de Widgets
+* Testes de Streams
+* Testes de Integração
+* Cobertura de Testes
+* Test Doubles
+* Mocks
+* Stubs
+* Spies
