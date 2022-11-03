@@ -1,4 +1,3 @@
-import 'package:enquetes/domain/entities/account_entity.dart';
 import 'package:flutter/cupertino.dart';
 
 abstract class HttpClient {
