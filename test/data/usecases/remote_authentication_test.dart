@@ -82,8 +82,8 @@ void main() {
     expect(future, throwsA(DomainError.invalidCredentials));
   });
   test('Should return an Account if HttpClient returns 200', () async {
-    final validData =mockValidData();
-mockHttpData(validData)
+    final validData = mockValidData();
+    mockHttpData(validData);
 
     final account = await sut.auth(params);
     expect(account.token, validData['accessToken']);
