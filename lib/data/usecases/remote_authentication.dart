@@ -7,7 +7,7 @@ import '../../domain/usecases/usecases.dart';
 import '../../data/models/models.dart';
 import '../http/http.dart';
 
-class RemoteAuthentication {
+class RemoteAuthentication implements Authentication {
   final HttpClient httpClient;
   final String url;
   Future<AccountEntity> auth(AuthenticationParams params) async {
