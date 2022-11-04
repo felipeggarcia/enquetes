@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:faker/faker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart';
@@ -19,7 +21,7 @@ class HttpAdapter {
       'content-type': 'applicantion/json',
       'accept': 'applicantion/json',
     };
-    await client.post(url, headers: headers);
+    await client.post(url, headers: headers, body: jsonEncode(body));
   }
 }
 
@@ -37,11 +39,16 @@ void main() {
   });
   group('post', () {
     test('Should call post with correct values', () async {
-      await sut.request(url: url, method: 'post');
-      verify(client.post(url, headers: {
-        'content-type': 'applicantion/json',
-        'accept': 'applicantion/json',
-      }));
+      await sut
+          .request(url: url, method: 'post', body: {'any_key': 'any_value'});
+      verify(client.post(
+        url,
+        headers: {
+          'content-type': 'applicantion/json',
+          'accept': 'applicantion/json',
+        },
+        body: '{"any_key":"any_value"}',
+      ));
     });
   });
 }
