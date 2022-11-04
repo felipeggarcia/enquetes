@@ -15,7 +15,11 @@ class HttpAdapter {
     @required String method,
     Map body,
   }) async {
-    await client.post(url);
+    final headers = {
+      'content-type': 'applicantion/json',
+      'accept': 'applicantion/json',
+    };
+    await client.post(url, headers: headers);
   }
 }
 
@@ -29,7 +33,10 @@ void main() {
       final url = faker.internet.httpUrl();
 
       await sut.request(url: url, method: 'post');
-      verify(client.post(url));
+      verify(client.post(url, headers: {
+        'content-type': 'applicantion/json',
+        'accept': 'applicantion/json',
+      }));
     });
   });
 }
