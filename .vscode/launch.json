@@ -11,21 +11,10 @@
             "program":"./test/"
         },
         {
-            "name": "enquetes",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "enquetes (profile mode)",
+            "name": "Flutter",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "profile"
-        },
-        {
-            "name": "enquetes (release mode)",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "release"
+            "program": "lib/main/main.dart"
         }
     ]
 }
