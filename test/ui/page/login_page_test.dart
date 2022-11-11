@@ -28,6 +28,7 @@ void main() {
 
   tearDown(() {
     emailErrorController.close();
+    passwordErrorController.close();
   });
 
   testWidgets('Should load with correct initial state ',
@@ -65,7 +66,7 @@ void main() {
     await tester.enterText(find.bySemanticsLabel('Senha'), password);
     verify(presenter.validatePassword(password));
   });
-  testWidgets('Should present error if email is invalid',
+  testWidgets('Should present error if email is valid',
       (WidgetTester tester) async {
     await LoadPage(tester);
     emailErrorController.add('any error');
@@ -102,5 +103,27 @@ void main() {
     await tester.pump();
 
     expect(find.text('any error'), findsOneWidget);
+  });
+  testWidgets('Should present no error if password is invalid',
+      (WidgetTester tester) async {
+    await LoadPage(tester);
+    passwordErrorController.add(null);
+    await tester.pump();
+
+    expect(
+        find.descendant(
+            of: find.bySemanticsLabel('Senha'), matching: find.byType(Text)),
+        findsOneWidget);
+  });
+  testWidgets('Should present no error if password is invalid',
+      (WidgetTester tester) async {
+    await LoadPage(tester);
+    passwordErrorController.add('');
+    await tester.pump();
+
+    expect(
+        find.descendant(
+            of: find.bySemanticsLabel('Senha'), matching: find.byType(Text)),
+        findsOneWidget);
   });
 }
