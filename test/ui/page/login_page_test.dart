@@ -140,7 +140,7 @@ void main() {
     final button = tester.widget<RaisedButton>(find.byType(RaisedButton));
     expect(button.onPressed, isNotNull);
   });
-  testWidgets('Should enable button if form is invalid ',
+  testWidgets('Should disable button if form is invalid ',
       (WidgetTester tester) async {
     await LoadPage(tester);
     isFormValidController.add(false);
@@ -148,5 +148,15 @@ void main() {
 
     final button = tester.widget<RaisedButton>(find.byType(RaisedButton));
     expect(button.onPressed, null);
+  });
+  testWidgets('Should call authencication on form submit ',
+      (WidgetTester tester) async {
+    await LoadPage(tester);
+
+    isFormValidController.add(true);
+    await tester.pump();
+    await tester.tap(find.byType(RaisedButton));
+    await tester.pump();
+    verify(presenter.auth()).called(1);
   });
 }
