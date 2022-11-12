@@ -13,6 +13,7 @@ void main() {
   LoginPresenter presenter;
   StreamController<String> emailErrorController;
   StreamController<String> passwordErrorController;
+  StreamController<String> mainErrorController;
   StreamController<bool> isFormValidController;
   StreamController<bool> isLoadingController;
 
@@ -20,12 +21,15 @@ void main() {
     presenter = LoginPresenterSpy();
     emailErrorController = StreamController<String>();
     passwordErrorController = StreamController<String>();
+    mainErrorController = StreamController<String>();
     isFormValidController = StreamController<bool>();
     isLoadingController = StreamController<bool>();
     when(presenter.emailErrorStream)
         .thenAnswer((_) => emailErrorController.stream);
     when(presenter.passwordErrorStream)
         .thenAnswer((_) => passwordErrorController.stream);
+    when(presenter.mainErrorStream)
+        .thenAnswer((_) => mainErrorController.stream);
     when(presenter.isFormValidStream)
         .thenAnswer((_) => isFormValidController.stream);
     when(presenter.isLoadingStream)
@@ -39,6 +43,7 @@ void main() {
     passwordErrorController.close();
     isFormValidController.close();
     isLoadingController.close();
+    mainErrorController.close();
   });
 
   testWidgets('Should load with correct initial state ',
@@ -181,5 +186,13 @@ void main() {
     await tester.pump();
 
     expect(find.byType(CircularProgressIndicator), findsNothing);
+  });
+  testWidgets('Should present error message if authentication fails',
+      (WidgetTester tester) async {
+    await LoadPage(tester);
+    mainErrorController.add('main error');
+    await tester.pump();
+
+    expect(find.text('main error'), findsOneWidget);
   });
 }
