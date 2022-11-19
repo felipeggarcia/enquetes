@@ -5,7 +5,7 @@
 2. ✅Notificar o emailErrorStream com o resultado do Validation
 3. ✅Notificar o isFormValidStream após validar o email
 4. ✅Validar senha com o Validation
-5. Notificar o passwordErrorStream com o resultado do Validation
+5. ✅Notificar o passwordErrorStream com o resultado do Validation
 6. Notificar o isFormValidStream após validar a senha
 7. Para o formulário estar válido todos os Streams de erro precisam estar null e todos os campos obrigatórios não podem estar vazios
 8. Chamar o Authentication com email e senha corretos
