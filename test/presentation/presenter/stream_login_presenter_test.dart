@@ -10,11 +10,10 @@ void main() {
   StreamLoginPresenter sut;
   Validation validation;
   String email;
-  PostExpectation mockValidationCall(String field) => when(
-        validation.validate(
-            field: field == null ? anyNamed('field') : field,
-            value: anyNamed('value')),
-      );
+  PostExpectation mockValidationCall(String field) => when(validation.validate(
+      field: field == null ? anyNamed('field') : field,
+      value: anyNamed('value')));
+
   void mockValidation({String field, String value}) {
     mockValidationCall(field).thenReturn(value);
   }
@@ -34,9 +33,11 @@ void main() {
 
   test('Should emit email error if validation fails ', () {
     mockValidation(value: 'error');
-    expectLater(sut.emailErrorStream, emits('error'));
-    sut.validateEmail(email);
 
-    verify(validation.validate(field: 'email', value: email)).called(1);
+    sut.emailErrorStream
+        .listen(expectAsync1((error) => expect(error, 'error')));
+
+    sut.validateEmail(email);
+    sut.validateEmail(email);
   });
 }
