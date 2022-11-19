@@ -3,6 +3,7 @@ import 'package:enquetes/ui/presentation/protocols/protocols.dart';
 import 'package:faker/faker.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
+import 'dart:async';
 
 class ValidationSpy extends Mock implements Validation {}
 
@@ -77,9 +78,7 @@ void main() {
     sut.validatePassword(password);
     sut.validatePassword(password);
   });
-  test(
-      'Should emit null if password validation succeeds and emits error if email validation fails',
-      () {
+  test('Should emits form invalid event if any field is invalid', () {
     mockValidation(field: 'email', value: 'error');
     sut.emailErrorStream
         .listen(expectAsync1((error) => expect(error, 'error')));
@@ -89,6 +88,19 @@ void main() {
         .listen(expectAsync1((isValid) => expect(isValid, false)));
 
     sut.validateEmail(email);
+    sut.validatePassword(password);
+  });
+  test('Should emits form valid event if all field areas valid', () async {
+    sut.emailErrorStream.listen(expectAsync1((error) => expect(error, null)));
+    await Future.delayed(Duration.zero);
+    sut.passwordErrorStream
+        .listen(expectAsync1((error) => expect(error, null)));
+
+    expectLater(sut.isFormValidStream, emitsInOrder([false, true]));
+    // expectLater(sut.isFormValidStream, emits(false));
+
+    sut.validateEmail(email);
+    await Future.delayed(Duration.zero);
     sut.validatePassword(password);
   });
 }
