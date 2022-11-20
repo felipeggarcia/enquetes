@@ -10,6 +10,10 @@ extension DomainErrorExtension on DomainError {
         return 'Credenciais Inválidas.';
 
         break;
+      case DomainError.unexpected:
+        return 'Algo errado aconteceu. Tente novamente em breve.';
+
+        break;
       default:
         return '';
     }
