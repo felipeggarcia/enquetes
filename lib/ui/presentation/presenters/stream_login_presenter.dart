@@ -9,6 +9,7 @@ class LoginState {
   String password;
   String emailError;
   String passwordError;
+  bool isLoading = false;
   bool get isFormValid =>
       emailError == null &&
       email != null &&
@@ -29,6 +30,8 @@ class StreamLoginPresenter {
       _controller.stream.map((state) => state.passwordError).distinct();
   Stream<bool> get isFormValidStream =>
       _controller.stream.map((state) => state.isFormValid).distinct();
+  Stream<bool> get isLoadingStream =>
+      _controller.stream.map((state) => state.isLoading).distinct();
 
   StreamLoginPresenter(
       {@required this.validation, @required this.authentication});
@@ -49,7 +52,11 @@ class StreamLoginPresenter {
   }
 
   Future<void> auth() async {
+    _state.isLoading = true;
+    _update();
     await authentication.auth(
         AuthenticationParams(email: _state.email, secret: _state.password));
+    _state.isLoading = false;
+    _update();
   }
 }
