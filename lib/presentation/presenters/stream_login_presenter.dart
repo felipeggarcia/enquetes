@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:enquetes/domain/helpers/domain_error.dart';
-import 'package:enquetes/domain/usecases/authentication.dart';
-import 'package:enquetes/ui/presentation/protocols/protocols.dart';
+import 'package:enquetes/domain/helpers/helpers.dart';
+import 'package:enquetes/domain/usecases/usecases.dart';
+import 'package:enquetes/presentation/protocols/protocols.dart';
 import 'package:flutter/material.dart';
 
 class LoginState {

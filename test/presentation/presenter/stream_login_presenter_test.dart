@@ -1,8 +1,8 @@
 import 'package:enquetes/domain/entities/account_entity.dart';
 import 'package:enquetes/domain/helpers/domain_error.dart';
 import 'package:enquetes/domain/usecases/authentication.dart';
-import 'package:enquetes/ui/presentation/presenters/presenters.dart';
-import 'package:enquetes/ui/presentation/protocols/protocols.dart';
+import 'package:enquetes/presentation/presenters/presenters.dart';
+import 'package:enquetes/presentation/protocols/protocols.dart';
 import 'package:faker/faker.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
