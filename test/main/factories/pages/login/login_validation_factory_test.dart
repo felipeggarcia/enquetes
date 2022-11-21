@@ -1,4 +1,4 @@
-import 'package:enquetes/main/factories/page/login/login_validation_factory.dart';
+import 'package:enquetes/main/factories/pages/login/login_validation_factory.dart';
 import 'package:enquetes/validation/validators/validators.dart';
 import 'package:test/test.dart';
 
