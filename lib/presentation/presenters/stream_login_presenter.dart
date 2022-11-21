@@ -38,7 +38,8 @@ class StreamLoginPresenter implements LoginPresenter {
   Stream<String> get mainErrorStream =>
       _controller?.stream?.map((state) => state.mainError)?.distinct();
 
-  StreamLoginPresenter({this.validation, @required this.authentication});
+  StreamLoginPresenter(
+      {@required this.validation, @required this.authentication});
 
   void _update() => _controller?.add(_state);
 

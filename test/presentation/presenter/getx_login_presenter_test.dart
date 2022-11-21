@@ -14,7 +14,7 @@ class ValidationSpy extends Mock implements Validation {}
 class AuthenticationSpy extends Mock implements Authentication {}
 
 void main() {
-  StreamLoginPresenter sut;
+  GetxLoginPresenter sut;
   AuthenticationSpy authentication;
   ValidationSpy validation;
   String email;
@@ -42,7 +42,7 @@ void main() {
   setUp(() {
     validation = ValidationSpy();
     authentication = AuthenticationSpy();
-    sut = StreamLoginPresenter(
+    sut = GetxLoginPresenter(
         validation: validation, authentication: authentication);
     email = faker.internet.email();
     password = faker.internet.password();
@@ -155,7 +155,7 @@ void main() {
     sut.validateEmail(email);
     sut.validatePassword(password);
 
-    expectLater(sut.isLoadingStream, emits(false));
+    expectLater(sut.isLoadingStream, emitsInOrder([true, false]));
     sut.mainErrorStream.listen(
         expectAsync1((error) => expect(error, 'Credenciais inválidas.')));
 
@@ -167,17 +167,10 @@ void main() {
     sut.validateEmail(email);
     sut.validatePassword(password);
 
-    expectLater(sut.isLoadingStream, emits(false));
+    expectLater(sut.isLoadingStream, emitsInOrder([true, false]));
     sut.mainErrorStream.listen(expectAsync1((error) =>
         expect(error, 'Algo errado aconteceu. Tente novamente em breve.')));
 
     await sut.auth();
-  });
-
-  test('Should not emit after dispose', () async {
-    expectLater(sut.emailErrorStream, neverEmits(null));
-
-    sut.dispose();
-    sut.validateEmail(email);
   });
 }

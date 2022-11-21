@@ -4,5 +4,5 @@ import 'package:flutter/material.dart';
 import '../../factories.dart';
 
 Widget makeLoginPage() {
-  return LoginPage(makeLoginPresenter());
+  return LoginPage(makeGetxLoginPresenter());
 }

@@ -7,7 +7,7 @@ extension DomainErrorExtension on DomainError {
   String get description {
     switch (this) {
       case DomainError.invalidCredentials:
-        return 'Credenciais Inválidas.';
+        return 'Credenciais inválidas.';
 
         break;
       case DomainError.unexpected:
