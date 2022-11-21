@@ -10,7 +10,7 @@ class ValidationComposite implements Validation {
   ValidationComposite(this.validations);
   String error;
   String validate({@required String field, @required String value}) {
-    for (final validation in validations) {
+    for (final validation in validations.where((v) => v.field == field)) {
       final error = validation.validate(value);
       if (error?.isNotEmpty == true) {
         return error;
@@ -50,7 +50,7 @@ void main() {
     mockValidation2(null);
 
     validation3 = FieldValidationSpy();
-    when(validation3.field).thenReturn('other_field');
+    when(validation3.field).thenReturn('any_field');
     mockValidation3(null);
     sut = ValidationComposite([validation1, validation2, validation3]);
   });
