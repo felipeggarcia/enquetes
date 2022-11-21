@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:enquetes/domain/helpers/helpers.dart';
 import 'package:enquetes/domain/usecases/usecases.dart';
 import 'package:enquetes/presentation/protocols/protocols.dart';
+import 'package:enquetes/ui/pages/login/login_presenter.dart';
 import 'package:flutter/material.dart';
 
 class LoginState {
@@ -19,7 +20,7 @@ class LoginState {
       password != null;
 }
 
-class StreamLoginPresenter {
+class StreamLoginPresenter implements LoginPresenter {
   final Validation validation;
   final Authentication authentication;
   var _controller = StreamController<LoginState>.broadcast();
@@ -37,8 +38,7 @@ class StreamLoginPresenter {
   Stream<String> get mainErrorStream =>
       _controller?.stream?.map((state) => state.mainError)?.distinct();
 
-  StreamLoginPresenter(
-      {@required this.validation, @required this.authentication});
+  StreamLoginPresenter({this.validation, @required this.authentication});
 
   void _update() => _controller?.add(_state);
 
