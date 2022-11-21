@@ -1,4 +1,4 @@
-import 'package:enquetes/main/factories/page/login/login_page_factory.dart';
+import 'package:enquetes/main/factories/factories.dart';
 import 'package:enquetes/ui/components/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
