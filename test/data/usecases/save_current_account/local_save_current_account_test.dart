@@ -28,12 +28,16 @@ class SaveSecureCacheStorageSpy extends Mock implements SaveSecureCacheStorage {
 }
 
 void main() {
-  test('Should call SaveCacheStorage with correct values', () async {
-    final saveSecureCacheStorage = SaveSecureCacheStorageSpy();
-    final sut =
+  LocalSaveCurrentAccount sut;
+  SaveSecureCacheStorageSpy saveSecureCacheStorage;
+  AccountEntity account;
+  setUp(() {
+    saveSecureCacheStorage = SaveSecureCacheStorageSpy();
+    sut =
         LocalSaveCurrentAccount(saveSecureCacheStorage: saveSecureCacheStorage);
-
-    final account = AccountEntity(faker.guid.guid());
+    account = AccountEntity(faker.guid.guid());
+  });
+  test('Should call SaveCacheStorage with correct values', () async {
     await sut.save(account);
 
     verify(
@@ -41,15 +45,10 @@ void main() {
   });
   test('Should throw UnespectedError if SaveSecureCacheStorage throws',
       () async {
-    final saveSecureCacheStorage = SaveSecureCacheStorageSpy();
-    final sut =
-        LocalSaveCurrentAccount(saveSecureCacheStorage: saveSecureCacheStorage);
     when(saveSecureCacheStorage.saveSecure(
             key: anyNamed('key'), value: anyNamed('value')))
         .thenThrow(Exception());
 
-    final account = AccountEntity(faker.guid.guid());
-    final future = sut.save(account);
-    expect(future, throwsA(DomainError.unexpected));
+    expect(sut.save(account), throwsA(DomainError.unexpected));
   });
 }
