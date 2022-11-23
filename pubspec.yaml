@@ -12,7 +12,7 @@ dependencies:
   provider: 4.3.2+3
   equatable: 1.2.5
   get: 3.4.2
-  # flutter_secure_storage: 3.3.5
+  flutter_secure_storage: 3.3.5
   # localstorage: 3.0.6+9
   # carousel_slider: 2.3.1
   # initl: 0.16.1
