@@ -12,6 +12,7 @@ class LoginState {
   String emailError;
   String passwordError;
   String mainError;
+  String navigateTo;
   bool isLoading = false;
   bool get isFormValid =>
       emailError == null &&
@@ -37,6 +38,8 @@ class StreamLoginPresenter implements LoginPresenter {
       _controller?.stream?.map((state) => state.isLoading)?.distinct();
   Stream<String> get mainErrorStream =>
       _controller?.stream?.map((state) => state.mainError)?.distinct();
+  Stream<String> get navigateToSream =>
+      _controller?.stream?.map((state) => state.navigateTo)?.distinct();
 
   StreamLoginPresenter(
       {@required this.validation, @required this.authentication});
@@ -73,4 +76,8 @@ class StreamLoginPresenter implements LoginPresenter {
     _controller?.close();
     _controller = null;
   }
+
+  @override
+  // TODO: implement navigateToStream
+  Stream<String> get navigateToStream => throw UnimplementedError();
 }

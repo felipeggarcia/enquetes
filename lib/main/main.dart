@@ -18,7 +18,10 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: makeAppTheme(),
       initialRoute: '/login',
-      getPages: [GetPage(name: '/login', page: makeLoginPage)],
+      getPages: [
+        GetPage(name: '/login', page: makeLoginPage),
+        GetPage(name: '/surveys', page: () => Scaffold(body: Text('ENQUETES'))),
+      ],
     );
   }
 }
