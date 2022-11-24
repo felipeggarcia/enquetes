@@ -1,10 +1,8 @@
 import 'package:enquetes/data/usecases/usecases.dart';
 import 'package:enquetes/domain/usecases/usecases.dart';
-import 'package:enquetes/main/factories/cache/cache.dart';
+import 'package:enquetes/main/factories/factories.dart';
 
-import '../factories.dart';
-
-Authentication makeLocalSaveCurrentAccount() {
+SaveCurrentAccount makeLocalSaveCurrentAccount() {
   return LocalSaveCurrentAccount(
       saveSecureCacheStorage: makeLocalStorageAdapter());
 }
