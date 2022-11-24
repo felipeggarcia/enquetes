@@ -162,6 +162,7 @@ void main() {
 
     verify(saveCurrentAccount.save(AccountEntity(token))).called(1);
   });
+
   test('Should emit UnexpectedError if save current account fails ', () async {
     mockASaveCurrentAccountError();
     sut.validateEmail(email);
@@ -178,7 +179,7 @@ void main() {
     sut.validateEmail(email);
     sut.validatePassword(password);
 
-    expectLater(sut.isLoadingStream, emitsInOrder([true, false]));
+    expectLater(sut.isLoadingStream, emits(true));
 
     await sut.auth();
   });
