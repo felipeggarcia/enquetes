@@ -3,28 +3,33 @@ import 'package:test/test.dart';
 import 'package:meta/meta.dart';
 
 class LocalLoadCurrentAccount {
-  final FetchSecureCacheStorege fetchSecureCacheStorege;
+  final FetchSecureCacheStorage fetchSecureCacheStorage;
 
-  LocalLoadCurrentAccount({@required this.fetchSecureCacheStorege});
+  LocalLoadCurrentAccount({@required this.fetchSecureCacheStorage});
 
   Future<void> load() async {
-    await fetchSecureCacheStorege.fetchSecure('token');
+    await fetchSecureCacheStorage.fetchSecure('token');
   }
 }
 
-abstract class FetchSecureCacheStorege {
+abstract class FetchSecureCacheStorage {
   Future<void> fetchSecure(String key);
 }
 
-class FetchSecureCacheStoregeSpy extends Mock
-    implements FetchSecureCacheStorege {}
+class FetchSecureCacheStorageSpy extends Mock
+    implements FetchSecureCacheStorage {}
 
 void main() {
+  LocalLoadCurrentAccount sut;
+  FetchSecureCacheStorageSpy fetchSecureCacheStorage;
+
+  setUp(() {
+    fetchSecureCacheStorage = FetchSecureCacheStorageSpy();
+    sut = LocalLoadCurrentAccount(
+        fetchSecureCacheStorage: fetchSecureCacheStorage);
+  });
   test('Should callFetchSecureCacheStorage with correct value', () async {
-    final fetchSecureCacheStorege = FetchSecureCacheStoregeSpy();
-    final sut = LocalLoadCurrentAccount(
-        fetchSecureCacheStorege: fetchSecureCacheStorege);
     await sut.load();
-    verify(fetchSecureCacheStorege.fetchSecure('token'));
+    verify(fetchSecureCacheStorage.fetchSecure('token'));
   });
 }
