@@ -1,7 +1,8 @@
-# Local Save Current Account Use Case
+# Local Load Current Account Use Case
 
 > ## Caso Sucesso
-1.✅Sistema grava token de acesso de usuário no Cache  de forma segura
+1. ✅Sistema solicita o token de acesse do usuário gravando no Cache Seguro
+2. Sistema retorna os dados da conta  do usuário
 
-> ## Exceção
-1.✅Sistema retorna uma mensagem de erro inesperado
+> ## Exceção - Falha ao carregar dados do cache
+1. Sistema retorna uma mensagem de erro inesperado
