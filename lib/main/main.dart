@@ -15,7 +15,7 @@ class App extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
 
     return GetMaterialApp(
-      title: '4Dev',
+      title: 'Enquetes',
       debugShowCheckedModeBanner: false,
       theme: makeAppTheme(),
       initialRoute: '/login',
