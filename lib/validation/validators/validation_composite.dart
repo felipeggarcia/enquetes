@@ -1,15 +1,18 @@
-import 'package:enquetes/presentation/protocols/protocols.dart';
-import 'package:enquetes/validation/protocols/protocols.dart';
-import 'package:flutter/material.dart';
+import 'package:meta/meta.dart';
+
+import '../../presentation/protocols/protocols.dart';
+
+import '../protocols/protocols.dart';
 
 class ValidationComposite implements Validation {
   final List<FieldValidation> validations;
 
   ValidationComposite(this.validations);
-  String error;
+
   String validate({@required String field, @required String value}) {
+    String error;
     for (final validation in validations.where((v) => v.field == field)) {
-      final error = validation.validate(value);
+      error = validation.validate(value);
       if (error?.isNotEmpty == true) {
         return error;
       }

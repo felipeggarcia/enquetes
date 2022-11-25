@@ -1,7 +1,8 @@
-import 'package:enquetes/validation/protocols/protocols.dart';
-import 'package:enquetes/validation/validators/validators.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
+
+import 'package:enquetes/validation/protocols/protocols.dart';
+import 'package:enquetes/validation/validators/validators.dart';
 
 class FieldValidationSpy extends Mock implements FieldValidation {}
 
@@ -27,27 +28,30 @@ void main() {
     validation1 = FieldValidationSpy();
     when(validation1.field).thenReturn('other_field');
     mockValidation1(null);
-
     validation2 = FieldValidationSpy();
     when(validation2.field).thenReturn('any_field');
     mockValidation2(null);
-
     validation3 = FieldValidationSpy();
     when(validation3.field).thenReturn('any_field');
     mockValidation3(null);
     sut = ValidationComposite([validation1, validation2, validation3]);
   });
+
   test('Should return null if all validations returns null or empty', () {
-    final error = sut.validate(field: 'any_field', value: 'any_value');
     mockValidation2('');
+
+    final error = sut.validate(field: 'any_field', value: 'any_value');
+
     expect(error, null);
   });
-  test('Should return first error if a cople validations returns error', () {
+
+  test('Should return the first error', () {
     mockValidation1('error_1');
     mockValidation2('error_2');
     mockValidation3('error_3');
 
     final error = sut.validate(field: 'any_field', value: 'any_value');
+
     expect(error, 'error_2');
   });
 }

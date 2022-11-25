@@ -1,28 +1,28 @@
-import 'package:enquetes/ui/pages/pages.dart';
 import 'package:flutter/material.dart';
-import 'package:get/route_manager.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
-import './components/components.dart';
 import '../../components/components.dart';
+import 'components/components.dart';
+import 'login_presenter.dart';
 
 class LoginPage extends StatelessWidget {
   final LoginPresenter presenter;
+
   LoginPage(this.presenter);
 
   @override
   Widget build(BuildContext context) {
     void _hideKeyboard() {
-      final currentFocus = FocusScope.of(context);
-      if (!currentFocus.hasPrimaryFocus) {
-        currentFocus.unfocus();
+      final currectFocus = FocusScope.of(context);
+      if (!currectFocus.hasPrimaryFocus) {
+        currectFocus.unfocus();
       }
     }
 
-    return GestureDetector(
-      onTap: _hideKeyboard,
-      child: Scaffold(
-        body: Builder(builder: (context) {
+    return Scaffold(
+      body: Builder(
+        builder: (context) {
           presenter.isLoadingStream.listen((isLoading) {
             if (isLoading) {
               showLoading(context);
@@ -30,6 +30,7 @@ class LoginPage extends StatelessWidget {
               hideLoading(context);
             }
           });
+
           presenter.mainErrorStream.listen((error) {
             if (error != null) {
               showErrorMessage(context, error);
@@ -42,41 +43,42 @@ class LoginPage extends StatelessWidget {
             }
           });
 
-          return SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                LoginHeader(),
-                Headline1(text: 'Login'),
-                Padding(
-                  padding: const EdgeInsets.all(32),
-                  child: Provider(
-                    create: (_) => presenter,
-                    child: Form(
+          return GestureDetector(
+            onTap: _hideKeyboard,
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  LoginHeader(),
+                  Headline1(text: 'Login'),
+                  Padding(
+                    padding: EdgeInsets.all(32),
+                    child: Provider(
+                      create: (_) => presenter,
+                      child: Form(
                         child: Column(
-                      children: <Widget>[
-                        EmailInput(),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            top: 8,
-                            bottom: 32,
-                          ),
-                          child: PasswordInput(),
+                          children: <Widget>[
+                            EmailInput(),
+                            Padding(
+                              padding: EdgeInsets.only(top: 8, bottom: 32),
+                              child: PasswordInput(),
+                            ),
+                            LoginButton(),
+                            FlatButton.icon(
+                              onPressed: () {},
+                              icon: Icon(Icons.person),
+                              label: Text('Criar Conta')
+                            )
+                          ],
                         ),
-                        LoginButton(),
-                        FlatButton.icon(
-                          onPressed: () {},
-                          icon: Icon(Icons.person),
-                          label: Text('Criar Conta'),
-                        )
-                      ],
-                    )),
-                  ),
-                ),
-              ],
+                      ),
+                    ),
+                  )
+                ],
+              ),
             ),
           );
-        }),
+        },
       ),
     );
   }

@@ -1,9 +1,9 @@
-import 'package:enquetes/data/http/http.dart';
 import 'package:faker/faker.dart';
+import 'package:http/http.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
-import 'package:http/http.dart';
+import 'package:enquetes/data/http/http.dart';
 
 import 'package:enquetes/infra/http/http.dart';
 
@@ -19,12 +19,15 @@ void main() {
     sut = HttpAdapter(client);
     url = faker.internet.httpUrl();
   });
+
   group('shared', () {
-    test('Should throws ServerError if invalid method is provided', () async {
+    test('Should throw ServerError if invalid method is provided', () async {
       final future = sut.request(url: url, method: 'invalid_method');
+
       expect(future, throwsA(HttpError.serverError));
     });
   });
+
   group('post', () {
     PostExpectation mockRequest() => when(
         client.post(any, body: anyNamed('body'), headers: anyNamed('headers')));
@@ -90,14 +93,14 @@ void main() {
       expect(response, null);
     });
 
-    test('Should return BadRequestError if post returns 400 without body',
-        () async {
+    test('Should return BadRequestError if post returns 400', () async {
       mockResponse(400, body: '');
 
       final future = sut.request(url: url, method: 'post');
 
       expect(future, throwsA(HttpError.badRequest));
     });
+
     test('Should return BadRequestError if post returns 400', () async {
       mockResponse(400);
 
@@ -105,6 +108,7 @@ void main() {
 
       expect(future, throwsA(HttpError.badRequest));
     });
+
     test('Should return UnauthorizedError if post returns 401', () async {
       mockResponse(401);
 
@@ -112,6 +116,7 @@ void main() {
 
       expect(future, throwsA(HttpError.unauthorized));
     });
+
     test('Should return ForbiddenError if post returns 403', () async {
       mockResponse(403);
 
@@ -119,6 +124,7 @@ void main() {
 
       expect(future, throwsA(HttpError.forbidden));
     });
+
     test('Should return NotFoundError if post returns 404', () async {
       mockResponse(404);
 
@@ -126,6 +132,7 @@ void main() {
 
       expect(future, throwsA(HttpError.notFound));
     });
+
     test('Should return ServerError if post returns 500', () async {
       mockResponse(500);
 
@@ -133,6 +140,7 @@ void main() {
 
       expect(future, throwsA(HttpError.serverError));
     });
+
     test('Should return ServerError if post throws', () async {
       mockError();
 

@@ -10,15 +10,10 @@ void showLoading(BuildContext context) {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             CircularProgressIndicator(),
-            SizedBox(
-              height: 10,
-            ),
-            Text(
-              'Aguarde ...',
-              textAlign: TextAlign.center,
-            )
+            SizedBox(height: 10),
+            Text('Aguarde...', textAlign: TextAlign.center),
           ],
-        )
+        ),
       ],
     ),
   );
@@ -26,6 +21,6 @@ void showLoading(BuildContext context) {
 
 void hideLoading(BuildContext context) {
   if (Navigator.canPop(context)) {
-    Navigator.pop(context);
+    Navigator.of(context).pop();
   }
 }

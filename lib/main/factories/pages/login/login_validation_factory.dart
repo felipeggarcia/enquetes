@@ -1,9 +1,7 @@
-import 'package:enquetes/main/builders/validation_builders.dart';
-import 'package:enquetes/presentation/protocols/protocols.dart';
-import 'package:enquetes/validation/protocols/protocols.dart';
-import 'package:enquetes/main/builders/builders.dart';
-import 'package:enquetes/validation/validators/validation_composite.dart';
-import 'package:enquetes/validation/validators/validators.dart';
+import '../../../../presentation/protocols/protocols.dart';
+import '../../../../validation/validators/validators.dart';
+import '../../../../validation/protocols/protocols.dart';
+import '../../../builders/builders.dart';
 
 Validation makeLoginValidation() {
   return ValidationComposite(makeLoginValidations());
@@ -12,6 +10,6 @@ Validation makeLoginValidation() {
 List<FieldValidation> makeLoginValidations() {
   return [
     ...ValidationBuilder.field('email').required().email().build(),
-    ...ValidationBuilder.field('password').required().build(),
+    ...ValidationBuilder.field('password').required().build()
   ];
 }
