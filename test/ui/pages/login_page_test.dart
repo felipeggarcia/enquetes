@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:enquetes/ui/helpers/helpers.dart';
-import 'package:enquetes/ui/utils/i18n/i18n.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';

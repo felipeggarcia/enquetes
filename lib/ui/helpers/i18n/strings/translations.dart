@@ -4,4 +4,8 @@ abstract class Translations {
   String get email;
   String get password;
   String get login;
+  String get requiredField;
+  String get invalidField;
+  String get invalidCredentials;
+  String get unexpected;
 }
