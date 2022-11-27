@@ -1,6 +1,7 @@
-import 'package:enquetes/ui/pages/splash/splash.dart';
 import 'package:flutter/material.dart';
-import 'package:get/route_manager.dart';
+import 'package:get/get.dart';
+
+import 'splash_presenter.dart';
 
 class SplashPage extends StatelessWidget {
   final SplashPresenter presenter;
