@@ -51,7 +51,7 @@ void main() {
     navigateToController.close();
   }
 
-  Future<void> LoadPage(WidgetTester tester) async {
+  Future<void> loadPage(WidgetTester tester) async {
     presenter = LoginPresenterSpy();
 
     initStreams();
@@ -75,7 +75,7 @@ void main() {
 
   testWidgets('Should load with correct initial state ',
       (WidgetTester tester) async {
-    await LoadPage(tester);
+    await loadPage(tester);
     final emailTextChildren = find.descendant(
         of: find.bySemanticsLabel('Email'), matching: find.byType(Text));
     expect(
@@ -100,7 +100,7 @@ void main() {
   });
   testWidgets('Should call validate with correct values',
       (WidgetTester tester) async {
-    await LoadPage(tester);
+    await loadPage(tester);
     final email = faker.internet.email();
     await tester.enterText(find.bySemanticsLabel('Email'), email);
     verify(presenter.validateEmail(email));
@@ -111,7 +111,7 @@ void main() {
   });
   testWidgets('Should present error if email is valid',
       (WidgetTester tester) async {
-    await LoadPage(tester);
+    await loadPage(tester);
     emailErrorController.add('any error');
     await tester.pump();
 
@@ -119,7 +119,7 @@ void main() {
   });
   testWidgets('Should present no error if email is invalid',
       (WidgetTester tester) async {
-    await LoadPage(tester);
+    await loadPage(tester);
     emailErrorController.add(null);
     await tester.pump();
 
@@ -130,7 +130,7 @@ void main() {
   });
   testWidgets('Should present no error if email is invalid',
       (WidgetTester tester) async {
-    await LoadPage(tester);
+    await loadPage(tester);
     emailErrorController.add('');
     await tester.pump();
 
@@ -141,7 +141,7 @@ void main() {
   });
   testWidgets('Should present error if password is invalid',
       (WidgetTester tester) async {
-    await LoadPage(tester);
+    await loadPage(tester);
     passwordErrorController.add('any error');
     await tester.pump();
 
@@ -149,7 +149,7 @@ void main() {
   });
   testWidgets('Should present no error if password is invalid',
       (WidgetTester tester) async {
-    await LoadPage(tester);
+    await loadPage(tester);
     passwordErrorController.add(null);
     await tester.pump();
 
@@ -160,7 +160,7 @@ void main() {
   });
   testWidgets('Should present no error if password is invalid',
       (WidgetTester tester) async {
-    await LoadPage(tester);
+    await loadPage(tester);
     passwordErrorController.add('');
     await tester.pump();
 
@@ -171,7 +171,7 @@ void main() {
   });
   testWidgets('Should enable button if form is valid ',
       (WidgetTester tester) async {
-    await LoadPage(tester);
+    await loadPage(tester);
     isFormValidController.add(true);
     await tester.pump();
 
@@ -180,7 +180,7 @@ void main() {
   });
   testWidgets('Should disable button if form is invalid ',
       (WidgetTester tester) async {
-    await LoadPage(tester);
+    await loadPage(tester);
     isFormValidController.add(false);
     await tester.pump();
 
@@ -189,7 +189,7 @@ void main() {
   });
   testWidgets('Should call authencication on form submit ',
       (WidgetTester tester) async {
-    await LoadPage(tester);
+    await loadPage(tester);
 
     isFormValidController.add(true);
     await tester.pump();
@@ -198,7 +198,7 @@ void main() {
     verify(presenter.auth()).called(1);
   });
   testWidgets('Should present loading', (WidgetTester tester) async {
-    await LoadPage(tester);
+    await loadPage(tester);
 
     isLoadingController.add(true);
     await tester.pump();
@@ -206,7 +206,7 @@ void main() {
     expect(find.byType(CircularProgressIndicator), findsOneWidget);
   });
   testWidgets('Should hide loading', (WidgetTester tester) async {
-    await LoadPage(tester);
+    await loadPage(tester);
     isLoadingController.add(true);
     await tester.pump();
     isLoadingController.add(false);
@@ -216,7 +216,7 @@ void main() {
   });
   testWidgets('Should present error message if authentication fails',
       (WidgetTester tester) async {
-    await LoadPage(tester);
+    await loadPage(tester);
     mainErrorController.add('main error');
     await tester.pump();
 
@@ -224,11 +224,22 @@ void main() {
   });
 
   testWidgets('Should change page ', (WidgetTester tester) async {
-    await LoadPage(tester);
+    await loadPage(tester);
 
     navigateToController.add('any_route');
     await tester.pumpAndSettle();
     expect(Get.currentRoute, 'any_route');
     expect(find.text('fake page'), findsOneWidget);
+  });
+  testWidgets('Should not change page  ', (WidgetTester tester) async {
+    await loadPage(tester);
+
+    navigateToController.add('');
+    await tester.pump();
+    expect(Get.currentRoute, '/login');
+
+    navigateToController.add(null);
+    await tester.pump();
+    expect(Get.currentRoute, '/login');
   });
 }
