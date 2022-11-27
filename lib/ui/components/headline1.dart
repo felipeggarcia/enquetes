@@ -3,6 +3,7 @@ import 'package:meta/meta.dart';
 
 class Headline1 extends StatelessWidget {
   final String text;
+
   Headline1({@required this.text});
 
   @override
@@ -10,7 +11,7 @@ class Headline1 extends StatelessWidget {
     return Text(
       text.toUpperCase(),
       textAlign: TextAlign.center,
-      style: Theme.of(context).textTheme.headline1,
+      style: Theme.of(context).textTheme.headline1
     );
   }
 }

@@ -15,13 +15,14 @@ class App extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
 
     return GetMaterialApp(
-      title: 'Enquetes',
+      title: '4Dev',
       debugShowCheckedModeBanner: false,
       theme: makeAppTheme(),
-      initialRoute: '/login',
+      initialRoute: '/',
       getPages: [
-        GetPage(name: '/login', page: makeLoginPage),
-        GetPage(name: '/surveys', page: () => Scaffold(body: Text('Enquetes'))),
+        GetPage(name: '/', page: makeSplashPage, transition: Transition.fade),
+        GetPage(name: '/login', page: makeLoginPage, transition: Transition.fadeIn),
+        GetPage(name: '/surveys', page: () => Scaffold(body: Text('Enquetes')), transition: Transition.fadeIn),
       ],
     );
   }
