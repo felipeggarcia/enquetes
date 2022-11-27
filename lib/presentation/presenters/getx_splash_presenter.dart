@@ -13,7 +13,7 @@ class GetxSplashPresenter implements SplashPresenter {
 
   GetxSplashPresenter({@required this.loadCurrentAccount});
 
-  Future<void> checkAccount({int durationInSeconds = 2}) async {
+  Future<void> checkAccount({int durationInSeconds = 1}) async {
     await Future.delayed(Duration(seconds: durationInSeconds));
     try {
       final account = await loadCurrentAccount.load();
