@@ -16,8 +16,8 @@ class RemoteAddAccount {
     try {
       await httpClient.request(url: url, method: 'post', body: body);
     } on HttpError catch (error) {
-      throw error == HttpError.unauthorized
-          ? DomainError.invalidCredentials
+      throw error == HttpError.forbidden
+          ? DomainError.emailInUse
           : DomainError.unexpected;
     }
   }
