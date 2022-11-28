@@ -6,7 +6,7 @@ class PtBr implements Translations {
   String get invalidField => 'Campo inválido';
   String get login => 'Login';
   String get password => 'Senha';
-  String get passwordConfirmation => 'Confirmação de senha';
+  String get passwordConfirmation => 'Confirmar senha';
   String get requiredField => 'Campo obrigatório';
   String get signIn => 'Entrar';
   String get signUp => 'Criar conta';
