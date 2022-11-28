@@ -1,7 +1,6 @@
 import 'translations.dart';
 
 class PtBr implements Translations {
-  @override
   String get email => 'Email';
   String get invalidCredentials => 'Credenciais inválidas.';
   String get invalidField => 'Campo inválido';
