@@ -1,4 +1,3 @@
-import 'package:enquetes/data/usecases/add_account/remote_add_account.dart';
 import 'package:faker/faker.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
@@ -40,7 +39,7 @@ void main() {
     sut = RemoteAddAccount(httpClient: httpClient, url: url);
     password = faker.internet.password();
     params = AddAccountParams(
-      name: faker.person.firstName(),
+      name: faker.person.name(),
       email: faker.internet.email(),
       password: password,
       passwordConfirmation: password,
@@ -57,5 +56,12 @@ void main() {
       'password': params.password,
       'passwordConfirmation': params.passwordConfirmation
     }));
+  });
+  test('Should throw UnexpectedError if HttpClient returns 400', () async {
+    mockHttpError(HttpError.badRequest);
+
+    final future = sut.add(params);
+
+    expect(future, throwsA(DomainError.unexpected));
   });
 }
