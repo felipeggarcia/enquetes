@@ -3,9 +3,11 @@ abstract class Translations {
   String get signUp;
   String get email;
   String get password;
+  String get passwordConfirmation;
   String get login;
   String get requiredField;
   String get invalidField;
   String get invalidCredentials;
+  String get name;
   String get unexpected;
 }
