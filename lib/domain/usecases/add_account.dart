@@ -4,7 +4,7 @@ import 'package:meta/meta.dart';
 import '../entities/entities.dart';
 
 abstract class AddAccount {
-  Future<AccountEntity> auth(AddAccountParams params);
+  Future<AccountEntity> add(AddAccountParams params);
 }
 
 class AddAccountParams extends Equatable {
