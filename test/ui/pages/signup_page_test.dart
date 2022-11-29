@@ -160,4 +160,26 @@ void main() {
             matching: find.byType(Text)),
         findsOneWidget);
   });
+  testWidgets('Should present password error', (WidgetTester tester) async {
+    await loadPage(tester);
+
+    passwordErrorController.add(UIError.requiredField);
+    await tester.pump();
+
+    expect(find.text(R.strings.requiredField), findsOneWidget);
+
+    passwordErrorController.add(UIError.invalidField);
+    await tester.pump();
+
+    expect(find.text(R.strings.invalidField), findsOneWidget);
+
+    passwordErrorController.add(null);
+    await tester.pump();
+
+    expect(
+        find.descendant(
+            of: find.bySemanticsLabel(R.strings.password),
+            matching: find.byType(Text)),
+        findsOneWidget);
+  });
 }
