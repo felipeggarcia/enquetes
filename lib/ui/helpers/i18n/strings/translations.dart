@@ -2,6 +2,7 @@ abstract class Translations {
   String get signIn;
   String get signUp;
   String get email;
+  String get emailInUse;
   String get password;
   String get passwordConfirmation;
   String get login;

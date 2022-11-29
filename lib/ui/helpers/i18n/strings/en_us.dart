@@ -2,6 +2,7 @@ import 'strings.dart';
 
 class EnUs implements Translations {
   String get email => 'Email';
+  String get emailInUse => 'Email in use';
   String get invalidCredentials => 'Invalid credentials';
   String get invalidField => 'Invalid field';
   String get login => 'Login';

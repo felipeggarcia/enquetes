@@ -2,6 +2,7 @@ import 'translations.dart';
 
 class PtBr implements Translations {
   String get email => 'Email';
+  String get emailInUse => 'O email já está em uso.';
   String get invalidCredentials => 'Credenciais inválidas.';
   String get invalidField => 'Campo inválido';
   String get login => 'Login';
