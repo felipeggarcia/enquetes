@@ -138,4 +138,26 @@ void main() {
             matching: find.byType(Text)),
         findsOneWidget);
   });
+  testWidgets('Should present name error', (WidgetTester tester) async {
+    await loadPage(tester);
+
+    nameErrorController.add(UIError.requiredField);
+    await tester.pump();
+
+    expect(find.text(R.strings.requiredField), findsOneWidget);
+
+    nameErrorController.add(UIError.invalidField);
+    await tester.pump();
+
+    expect(find.text(R.strings.invalidField), findsOneWidget);
+
+    nameErrorController.add(null);
+    await tester.pump();
+
+    expect(
+        find.descendant(
+            of: find.bySemanticsLabel(R.strings.name),
+            matching: find.byType(Text)),
+        findsOneWidget);
+  });
 }

@@ -17,6 +17,7 @@ class NameInput extends StatelessWidget {
               labelText: R.strings.name,
               icon: Icon(Icons.person,
                   color: Theme.of(context).primaryColorLight),
+              errorText: snapshot.hasData ? snapshot.data.description : null,
             ),
             keyboardType: TextInputType.name,
             onChanged: presenter.validateName,
