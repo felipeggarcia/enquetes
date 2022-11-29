@@ -27,7 +27,7 @@
 
 21. ✅Para o formulário estar válido todos os Streams de erro precisam estar null e todos os campos obrigatórios não podem estar vazios
 22. ✅Não notificar o isFormValidStream se o valor for igual ao último
-23. Chamar o AddAccount com email e senha corretos
+23. ✅Chamar o AddAccount com email e senha corretos
 24. Notificar o isLoadingStream como true antes de chamar o AddAccount
 25. Notificar o isLoadingStream como false no fim do AddAccount
 26. Notificar o mainErrorStream caso o AddAccount retorne erro
