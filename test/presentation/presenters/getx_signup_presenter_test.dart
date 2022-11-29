@@ -319,4 +319,15 @@ void main() {
 
     await sut.signUp();
   });
+  test('Should change page on success', () async {
+    sut.validateName(name);
+    sut.validateEmail(email);
+    sut.validatePassword(password);
+    sut.validatePasswordConfirmation(passwordConfirmation);
+
+    sut.navigateToStream
+        .listen(expectAsync1((page) => expect(page, '/surveys')));
+
+    await sut.signUp();
+  });
 }
