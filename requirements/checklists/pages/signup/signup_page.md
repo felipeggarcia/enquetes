@@ -22,5 +22,6 @@
 18. ✅Exibir loading no início da ação de criar conta
 19. ✅Chamar o método de criar conta
 20. ✅Exibir mensagem de erro caso criação de conta falhe
-21. ✅Esconder loading no fim da ação de login
+21. ✅Esconder loading no fim da ação de signup
 22. ✅Fechar streams quando a página for encerrada
+23. ✅Alterar página quando ação de signup for um sucesso
