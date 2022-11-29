@@ -1,10 +1,13 @@
-import 'package:enquetes/domain/entities/entities.dart';
-import 'package:enquetes/domain/usecases/add_account.dart';
-import 'package:enquetes/domain/usecases/usecases.dart';
-import 'package:enquetes/ui/helpers/helpers.dart';
 import 'package:faker/faker.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
+
+import 'package:enquetes/ui/helpers/helpers.dart';
+
+import 'package:enquetes/domain/entities/entities.dart';
+import 'package:enquetes/domain/helpers/helpers.dart';
+import 'package:enquetes/domain/usecases/add_account.dart';
+import 'package:enquetes/domain/usecases/usecases.dart';
 
 import 'package:enquetes/presentation/presenters/presenters.dart';
 import 'package:enquetes/presentation/protocols/protocols.dart';
@@ -38,6 +41,13 @@ void main() {
 
   void mockAddAccount() {
     mockAddAccountCall().thenAnswer((_) async => AccountEntity(token));
+  }
+
+  PostExpectation mockSaveCurrentAccountCall() =>
+      when(saveCurrentAccount.save(any));
+
+  void mockSaveCurrentAccountError() {
+    mockSaveCurrentAccountCall().thenThrow(DomainError.unexpected);
   }
 
   setUp(() {
@@ -253,5 +263,18 @@ void main() {
     await sut.signUp();
 
     verify(saveCurrentAccount.save(AccountEntity(token))).called(1);
+  });
+  test('Should emit UnexpectedError if SaveCurrentAccount fails', () async {
+    mockSaveCurrentAccountError();
+    sut.validateName(name);
+    sut.validateEmail(email);
+    sut.validatePassword(password);
+    sut.validatePasswordConfirmation(passwordConfirmation);
+
+    expectLater(sut.isLoadingStream, emitsInOrder([true, false]));
+    sut.mainErrorStream
+        .listen(expectAsync1((error) => expect(error, UIError.unexpected)));
+
+    await sut.signUp();
   });
 }
