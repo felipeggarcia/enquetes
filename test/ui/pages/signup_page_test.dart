@@ -314,4 +314,15 @@ void main() {
     await tester.pump();
     expect(Get.currentRoute, '/signup');
   });
+  testWidgets('Should call goToLogin on link click',
+      (WidgetTester tester) async {
+    await loadPage(tester);
+
+    final button = find.text(R.strings.login);
+    await tester.ensureVisible(button);
+    await tester.tap(button);
+    await tester.pump();
+
+    verify(presenter.goToLogin()).called(1);
+  });
 }
