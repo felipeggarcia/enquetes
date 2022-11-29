@@ -113,7 +113,7 @@ void main() {
     emailErrorController.add(UIError.requiredField);
     await tester.pump();
 
-    expect(find.text('Campo obrigatório'), findsOneWidget);
+    expect(find.text(R.strings.requiredField), findsOneWidget);
   });
   testWidgets('Should present error if email is empty',
       (WidgetTester tester) async {
@@ -122,7 +122,7 @@ void main() {
     emailErrorController.add(UIError.invalidField);
     await tester.pump();
 
-    expect(find.text('Campo inválido'), findsOneWidget);
+    expect(find.text(R.strings.invalidField), findsOneWidget);
   });
 
   testWidgets('Should present no error if email is valid',
@@ -146,7 +146,7 @@ void main() {
     passwordErrorController.add(UIError.invalidField);
     await tester.pump();
 
-    expect(find.text('Campo inválido'), findsOneWidget);
+    expect(find.text(R.strings.invalidField), findsOneWidget);
   });
 
   testWidgets('Should present no error if password is valid',

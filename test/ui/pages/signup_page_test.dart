@@ -115,4 +115,27 @@ void main() {
         passwordConfirmation);
     verify(presenter.validatePasswordConfirmation(passwordConfirmation));
   });
+
+  testWidgets('Should present email error', (WidgetTester tester) async {
+    await loadPage(tester);
+
+    emailErrorController.add(UIError.requiredField);
+    await tester.pump();
+
+    expect(find.text(R.strings.requiredField), findsOneWidget);
+
+    emailErrorController.add(UIError.invalidField);
+    await tester.pump();
+
+    expect(find.text(R.strings.invalidField), findsOneWidget);
+
+    emailErrorController.add(null);
+    await tester.pump();
+
+    expect(
+        find.descendant(
+            of: find.bySemanticsLabel(R.strings.email),
+            matching: find.byType(Text)),
+        findsOneWidget);
+  });
 }
