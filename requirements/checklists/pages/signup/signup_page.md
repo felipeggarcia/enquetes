@@ -9,14 +9,14 @@
 5. ✅Mostrar mensagem de erro se o email for inválido
 6. ✅Remover mensagem de erro se o email for válido
 7. ✅Validar senha quando o usuário digitar no campo
-8. Mostrar mensagem de erro se a senha for inválida
-9. Remover mensagem de erro se a senha for válida
+8. ✅Mostrar mensagem de erro se a senha for inválida
+9. ✅Remover mensagem de erro se a senha for válida
 10. ✅Validar nome quando o usuário digitar no campo
 11. ✅Mostrar mensagem de erro se a nome for inválido
 12. ✅Remover mensagem de erro se a nome for válido
 13. ✅Validar confirmação de senha quando o usuário digitar no campo
-14. Mostrar mensagem de erro se a confirmação de senha for inválida
-15. Remover mensagem de erro se a confirmação de senha for válida
+14. ✅Mostrar mensagem de erro se a confirmação de senha for inválida
+15. ✅Remover mensagem de erro se a confirmação de senha for válida
 16. Habilitar o botão de criar conta se todos os campos forem válidos
 17. Desabilitar o botão de criar conta se algum campo for inválido
 18. Exibir loading no início da ação de criar conta

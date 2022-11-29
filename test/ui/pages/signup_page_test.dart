@@ -182,4 +182,27 @@ void main() {
             matching: find.byType(Text)),
         findsOneWidget);
   });
+  testWidgets('Should present passwordConfirmation error',
+      (WidgetTester tester) async {
+    await loadPage(tester);
+
+    passwordConfirmationErrorController.add(UIError.requiredField);
+    await tester.pump();
+
+    expect(find.text(R.strings.requiredField), findsOneWidget);
+
+    passwordConfirmationErrorController.add(UIError.invalidField);
+    await tester.pump();
+
+    expect(find.text(R.strings.invalidField), findsOneWidget);
+
+    passwordConfirmationErrorController.add(null);
+    await tester.pump();
+
+    expect(
+        find.descendant(
+            of: find.bySemanticsLabel(R.strings.passwordConfirmation),
+            matching: find.byType(Text)),
+        findsOneWidget);
+  });
 }
