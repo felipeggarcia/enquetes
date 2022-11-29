@@ -98,11 +98,11 @@ void main() {
     await loadPage(tester);
 
     final email = faker.internet.email();
-    await tester.enterText(find.bySemanticsLabel('Email'), email);
+    await tester.enterText(find.bySemanticsLabel(R.strings.email), email);
     verify(presenter.validateEmail(email));
 
     final password = faker.internet.password();
-    await tester.enterText(find.bySemanticsLabel('Senha'), password);
+    await tester.enterText(find.bySemanticsLabel(R.strings.password), password);
     verify(presenter.validatePassword(password));
   });
 
