@@ -11,9 +11,9 @@ class CompareFieldsValidation implements FieldValidation {
   CompareFieldsValidation(
       {@required this.field, @required this.fieldToCompare});
 
-  ValidationError validate(Map input) {
-    return input[field] == input[fieldToCompare]
-        ? null
-        : ValidationError.invalidField;
-  }
+  ValidationError validate(Map input) => input[field] != null &&
+          input[fieldToCompare] != null &&
+          input[field] != input[fieldToCompare]
+      ? ValidationError.invalidField
+      : null;
 }
