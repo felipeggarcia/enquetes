@@ -9,6 +9,7 @@ void main() {
   setUp(() {
     sut = MinLengthValidation(field: 'any_field', size: 5);
   });
+
   test('Should return error if values is empty', () {
     final error = sut.validate({'any_field': ''});
 
