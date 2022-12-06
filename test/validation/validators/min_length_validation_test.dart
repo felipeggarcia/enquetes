@@ -10,27 +10,30 @@ void main() {
     sut = MinLengthValidation(field: 'any_field', size: 5);
   });
   test('Should return error if values is empty', () {
-    final error = sut.validate('');
+    final error = sut.validate({'any_field': ''});
 
     expect(error, ValidationError.invalidField);
   });
   test('Should return error if values is null', () {
-    final error = sut.validate(null);
+    final error = sut.validate({'any_field': null});
 
     expect(error, ValidationError.invalidField);
   });
   test('Should return error if values is less than min size', () {
-    final error = sut.validate(faker.randomGenerator.string(4, min: 1));
+    final error =
+        sut.validate({'any_field': faker.randomGenerator.string(4, min: 1)});
 
     expect(error, ValidationError.invalidField);
   });
   test('Should return null if values is equal than min size', () {
-    final error = sut.validate(faker.randomGenerator.string(5, min: 5));
+    final error =
+        sut.validate({'any_field': faker.randomGenerator.string(5, min: 5)});
 
     expect(error, null);
   });
   test('Should return null if values is bigger than min size', () {
-    final error = sut.validate(faker.randomGenerator.string(10, min: 6));
+    final error =
+        sut.validate({'any_field': faker.randomGenerator.string(10, min: 6)});
 
     expect(error, null);
   });
