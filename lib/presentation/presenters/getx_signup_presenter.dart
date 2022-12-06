@@ -13,14 +13,14 @@ class GetxSignUpPresenter extends GetxController implements SignUpPresenter {
   final AddAccount addAccount;
   final SaveCurrentAccount saveCurrentAccount;
 
-  final _emailError = Rx<UIError>();
-  final _nameError = Rx<UIError>();
-  final _passwordError = Rx<UIError>();
-  final _passwordConfirmationError = Rx<UIError>();
-  final _mainError = Rx<UIError>();
+  var _emailError = Rx<UIError>();
+  var _nameError = Rx<UIError>();
+  var _passwordError = Rx<UIError>();
+  var _passwordConfirmationError = Rx<UIError>();
+  var _mainError = Rx<UIError>();
   var _navigateTo = RxString();
-  final _isFormValid = false.obs;
-  final _isLoading = false.obs;
+  var _isFormValid = false.obs;
+  var _isLoading = false.obs;
 
   String _name;
   String _email;
@@ -99,8 +99,9 @@ class GetxSignUpPresenter extends GetxController implements SignUpPresenter {
   }
 
   Future<void> signUp() async {
-    _isLoading.value = true;
     try {
+      _isLoading.value = true;
+      _mainError.value = null;
       final account = await addAccount.add(AddAccountParams(
         name: _name,
         email: _email,
