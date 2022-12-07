@@ -1,7 +1,7 @@
 # Local Load Current Account Use Case
 
 > ## Caso de sucesso
-1. Sistema solicita os dados das enquetes do Cache
+1. ✅ Sistema solicita os dados das enquetes do Cache
 2. Sistema valida os dados recebidos do Cache
 3. Sistema entrega os dados das enquetes
 
