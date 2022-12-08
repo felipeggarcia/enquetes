@@ -179,13 +179,41 @@ void main() {
 
       expect(response, {'any_key': 'any_value'});
     });
-
     test('Should return null if get returns 200 with no data', () async {
       mockResponse(200, body: '');
 
       final response = await sut.request(url: url, method: 'get');
 
       expect(response, null);
+    });
+    test('Should return null if get returns 204', () async {
+      mockResponse(204, body: '');
+
+      final response = await sut.request(url: url, method: 'get');
+
+      expect(response, null);
+    });
+    test('Should return null if get returns 204 with data', () async {
+      mockResponse(204);
+
+      final response = await sut.request(url: url, method: 'get');
+
+      expect(response, null);
+    });
+    test('Should return BadRequestError if get returns 400', () async {
+      mockResponse(400, body: '');
+
+      final future = sut.request(url: url, method: 'get');
+
+      expect(future, throwsA(HttpError.badRequest));
+    });
+
+    test('Should return BadRequestError if get returns 400', () async {
+      mockResponse(400);
+
+      final future = sut.request(url: url, method: 'get');
+
+      expect(future, throwsA(HttpError.badRequest));
     });
   });
 }
