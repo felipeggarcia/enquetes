@@ -1,10 +1,10 @@
-import 'package:enquetes/data/usecases/usecases.dart';
-import 'package:enquetes/domain/helpers/domain_error.dart';
 import 'package:faker/faker.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
+import 'package:enquetes/data/usecases/usecases.dart';
 import 'package:enquetes/data/http/http.dart';
+import 'package:enquetes/domain/helpers/domain_error.dart';
 import 'package:enquetes/domain/entities/entities.dart';
 
 class HttpClientSpy extends Mock implements HttpClient<List<Map>> {}

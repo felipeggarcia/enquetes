@@ -1,4 +1,4 @@
-# HTTP
+# HTTP Post
 
 > ## Sucesso
 1. ✅ Request com verbo http válido (post)

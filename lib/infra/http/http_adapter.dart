@@ -10,11 +10,8 @@ class HttpAdapter implements HttpClient {
 
   HttpAdapter(this.client);
 
-  Future<Map> request({
-    @required String url,
-    @required String method,
-    Map body
-  }) async {
+  Future<Map> request(
+      {@required String url, @required String method, Map body}) async {
     final headers = {
       'content-type': 'application/json',
       'accept': 'application/json'
@@ -24,8 +21,10 @@ class HttpAdapter implements HttpClient {
     try {
       if (method == 'post') {
         response = await client.post(url, headers: headers, body: jsonBody);
+      } else if (method == 'get') {
+        response = await client.get(url, headers: headers);
       }
-    } catch(error) {
+    } catch (error) {
       throw HttpError.serverError;
     }
     return _handleResponse(response);
