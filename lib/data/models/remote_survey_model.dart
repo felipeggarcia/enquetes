@@ -1,3 +1,4 @@
+import 'package:enquetes/data/http/http.dart';
 import 'package:enquetes/domain/entities/entities.dart';
 
 import 'package:meta/meta.dart';
@@ -16,6 +17,11 @@ class RemoteSurveyModel {
   });
 
   factory RemoteSurveyModel.fromJson(Map json) {
+    if (!json.keys
+        .toSet()
+        .containsAll(['id', 'question', 'date', 'didAnswer'])) {
+      throw HttpError.invalidData;
+    }
     return RemoteSurveyModel(
       id: json['id'],
       question: json['question'],
