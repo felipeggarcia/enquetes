@@ -7,10 +7,10 @@ import 'package:enquetes/ui/pages/pages.dart';
 class SurveysPresenterSpy extends Mock implements SurveysPresenter {}
 
 void main() {
-  testWidgets('Should call LoadSurveys on page load',
-      (WidgetTester tester) async {
-    final presenter = SurveysPresenterSpy();
-    final surveysPage = GetMaterialApp(
+  SurveysPresenterSpy presenter = SurveysPresenterSpy();
+  GetMaterialApp surveysPage;
+  Future<void> loadPage(WidgetTester tester) async {
+    surveysPage = GetMaterialApp(
       initialRoute: '/surveys',
       getPages: [
         GetPage(
@@ -19,7 +19,11 @@ void main() {
         )
       ],
     );
+  }
 
+  testWidgets('Should call LoadSurveys on page load',
+      (WidgetTester tester) async {
+    await loadPage(tester);
     await tester.pumpWidget(surveysPage);
 
     verify(presenter.loadData()).called(1);
