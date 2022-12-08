@@ -12,5 +12,6 @@ class PtBr implements Translations {
   String get signIn => 'Entrar';
   String get signUp => 'Criar conta';
   String get name => 'Nome';
+  String get surveys => 'Enquetes';
   String get unexpected => 'Algo errado aconteceu. Tente novamente em breve.';
 }

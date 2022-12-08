@@ -11,4 +11,5 @@ abstract class Translations {
   String get invalidCredentials;
   String get name;
   String get unexpected;
+  String get surveys;
 }
