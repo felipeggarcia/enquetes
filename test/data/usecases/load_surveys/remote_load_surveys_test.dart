@@ -1,31 +1,11 @@
+import 'package:enquetes/data/usecases/usecases.dart';
 import 'package:enquetes/domain/helpers/domain_error.dart';
 import 'package:faker/faker.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
-import 'package:meta/meta.dart';
 
 import 'package:enquetes/data/http/http.dart';
-import 'package:enquetes/data/models/models.dart';
 import 'package:enquetes/domain/entities/entities.dart';
-
-class RemoteLoadSurveys {
-  final String url;
-  final HttpClient<List<Map>> httpClient;
-  RemoteLoadSurveys({@required this.url, @required this.httpClient});
-
-  Future<List<SurveyEntity>> load() async {
-    try {
-      final httpResponse = await httpClient.request(url: url, method: 'get');
-      return httpResponse
-          .map((json) => RemoteSurveyModel.fromJson(json).toEntity())
-          .toList();
-    } on HttpError catch (error) {
-      throw error == HttpError.forbidden
-          ? DomainError.accessDenied
-          : DomainError.unexpected;
-    }
-  }
-}
 
 class HttpClientSpy extends Mock implements HttpClient<List<Map>> {}
 
@@ -115,7 +95,7 @@ void main() {
 
     expect(future, throwsA(DomainError.unexpected));
   });
-  test('Should throw accessDeniedError if HttpClient returns 403', () async {
+  test('Should throw AccessDeniedError if HttpClient returns 403', () async {
     mockHttpError(HttpError.forbidden);
 
     final future = sut.load();
