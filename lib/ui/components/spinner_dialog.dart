@@ -1,3 +1,4 @@
+import 'package:enquetes/ui/helpers/helpers.dart';
 import 'package:flutter/material.dart';
 
 void showLoading(BuildContext context) {
@@ -11,7 +12,7 @@ void showLoading(BuildContext context) {
           children: <Widget>[
             CircularProgressIndicator(),
             SizedBox(height: 10),
-            Text('Aguarde...', textAlign: TextAlign.center),
+            Text(R.strings.loading3dot, textAlign: TextAlign.center),
           ],
         ),
       ],

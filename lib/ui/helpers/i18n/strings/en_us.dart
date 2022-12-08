@@ -14,4 +14,5 @@ class EnUs implements Translations {
   String get name => 'Name';
   String get unexpected => 'Unexpected Error';
   String get surveys => 'Surveys';
+  String get loading3dot => 'Loading...';
 }
