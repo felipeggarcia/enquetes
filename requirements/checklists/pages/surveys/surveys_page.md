@@ -9,5 +9,5 @@
 5. ✅Esconder mensagem de erro e exibir a lista ao receber evento de surveysData com dados
 6. ✅Mostrar a data e pergunta da enquete baseado no modelo
 7. ✅Mostrar em vermelho as enquetes não respondidas e em verde as respondidas pelo usuário
-8. Chamar o método de listar Enquetes ao clicar no botao de recarregar
+8. ✅Chamar o método de listar Enquetes ao clicar no botao de recarregar
 9. Ir para a tela de resultado da enquete ao clicar em alguma enquete
