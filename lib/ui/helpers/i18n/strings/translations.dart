@@ -13,4 +13,5 @@ abstract class Translations {
   String get unexpected;
   String get surveys;
   String get loading3dot;
+  String get reload;
 }

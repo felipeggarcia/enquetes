@@ -15,4 +15,5 @@ class PtBr implements Translations {
   String get surveys => 'Enquetes';
   String get unexpected => 'Algo errado aconteceu. Tente novamente em breve.';
   String get loading3dot => 'Aguarde...';
+  String get reload => 'Recarregar';
 }
