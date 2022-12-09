@@ -6,7 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:meta/meta.dart';
 import 'package:get/get.dart';
 
-class GetxSurveysPresenter {
+class GetxSurveysPresenter implements SurveysPresenter {
   final LoadSurveys loadSurveys;
 
   final _isLoading = true.obs;

@@ -7,7 +7,7 @@ import 'package:enquetes/data/http/http.dart';
 import 'package:enquetes/domain/helpers/domain_error.dart';
 import 'package:enquetes/domain/entities/entities.dart';
 
-class HttpClientSpy extends Mock implements HttpClient<List<Map>> {}
+class HttpClientSpy extends Mock implements HttpClient {}
 
 void main() {
   String url;
