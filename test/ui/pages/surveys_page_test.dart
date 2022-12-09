@@ -26,7 +26,7 @@ void main() {
   void mockStreams() {
     when(presenter.isLoadingStream)
         .thenAnswer((_) => isLoadingController.stream);
-    when(presenter.loadSurveysStream)
+    when(presenter.surveysStream)
         .thenAnswer((_) => loadSurveysController.stream);
   }
 
@@ -96,7 +96,7 @@ void main() {
 
     expect(find.byType(CircularProgressIndicator), findsNothing);
   });
-  testWidgets('Should present error if loadSurveysStream fails',
+  testWidgets('Should present error if surveysStream fails',
       (WidgetTester tester) async {
     await loadPage(tester);
 
@@ -107,7 +107,7 @@ void main() {
     expect(find.text(R.strings.reload), findsOneWidget);
     expect(find.text('Question 1'), findsNothing);
   });
-  testWidgets('Should present list if loadSurveysStream succeeds',
+  testWidgets('Should present list if surveysStream succeeds',
       (WidgetTester tester) async {
     await loadPage(tester);
 
