@@ -53,12 +53,13 @@ void main() {
 
   List<SurveyViewModel> makeSurveys() => [
         SurveyViewModel(
-            id: '1', question: 'Question 1', date: 'any_date', didAnswer: true),
+          id: '1',
+          question: 'Question 1',
+          date: 'Date 1',
+          didAnswer: true,
+        ),
         SurveyViewModel(
-            id: '2',
-            question: 'Question 2',
-            date: 'any_date',
-            didAnswer: false),
+            id: '2', question: 'Question 2', date: 'Date 2', didAnswer: false),
       ];
   tearDown(() {
     closeStreams();
@@ -117,5 +118,7 @@ void main() {
     expect(find.text(R.strings.reload), findsNothing);
     expect(find.text('Question 1'), findsWidgets);
     expect(find.text('Question 2'), findsWidgets);
+    expect(find.text('Date 1'), findsWidgets);
+    expect(find.text('Date 2'), findsWidgets);
   });
 }

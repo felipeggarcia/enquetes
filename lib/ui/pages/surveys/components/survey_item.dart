@@ -14,7 +14,9 @@ class SurveyItem extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
-            color: Theme.of(context).secondaryHeaderColor,
+            color: viewModel.didAnswer
+                ? Theme.of(context).secondaryHeaderColor
+                : Theme.of(context).primaryColorDark,
             boxShadow: [
               BoxShadow(
                   offset: Offset(0, 0),
@@ -27,7 +29,7 @@ class SurveyItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "20 ago 2020",
+              viewModel.date,
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 20,
